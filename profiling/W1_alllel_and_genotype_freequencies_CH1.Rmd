@@ -1,0 +1,70 @@
+---
+title: "population genetics"
+author: "subhash"
+date: "2026-01-21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+creating a directory using project template to organize code and data 
+
+```{r,  eval=FALSE}
+#firstly, I have followed the data dir system to organize my data and code
+#always I follow dir system
+
+ install.packages('ProjectTemplate')
+ library('ProjectTemplate')
+ create.project('letters')
+```
+
+
+
+
+Week_1: Population Genetics  
+
+# Allele and genotype frequencies
+
+dog 1: AA AA TT CC GG
+dog 2: AA AA CC CC GG
+dog 3: AA AA CT CC GG
+dog 4: AA AA CT CC GG
+dog 5: AA AA CC CC GG
+Let n be the total number of individuals in the population. Genotype frequency of TT is:
+
+```{r}
+n = 5
+n11 = 1
+f11 = n11/n
+f11 # genotype frequency of TT
+```
+
+## Relationship between allele(P) and genotype frequencies ( gene freq to genotype frq)
+Allele frequencies determine genotype frequencies, and heterozygosity is highest when alleles are equally common.
+
+Blue (q²) High when p ≈ 0
+Goes to zero when p → 1
+
+Black (p²) 
+Increases sharply as p increases
+
+Red (2pq)
+Maximum value = 0.5
+Heterozygotes are most common when alleles are balanced
+
+```{r}
+p = seq(0, 1, by=0.01)
+p
+q = 1 - p
+q
+f11 <- p^2  #frequency of homozygous dominant genotype p squre
+f12 <- 2*p*q  #frequency of heterozygous genotype 2pq
+f22 <- q^2  #frequency of homozygous recessive genotype q square
+
+# Plotting the genotype frequencies
+plot(f11, type="l", col="black", xlab="p", ylab="Genotype Frequency")
+lines(f12, col="red")
+lines(f22, col="blue")
+```
